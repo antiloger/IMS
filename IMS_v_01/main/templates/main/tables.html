@@ -1,0 +1,46 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <div class="container t_head" >
+        <h1>{{ table_name }}</h1>
+    </div>
+
+    <hr class="hr container"/>
+
+    <div class="row">
+
+        <div class="t_table ">
+            <table class="container table table-hover table-responsive table-dark">
+                    <thead>
+                        <tr>
+                            {% for fil in f_det %}
+                            <th scope="col">{{ fil.verbose_name }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    
+                    <tbody class="table-group-divider">
+                        {% for std in std_det %}
+
+                        <tr>
+                            {% for i in std %}
+                                 <th>{{ i }}</th>
+                            {% endfor %}
+
+
+                            <th>
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <button type="button" class="btn btn-outline-success">Enroll</button>
+                                    <a class="btn btn-outline-warning" href="{% url 'update' table_name std.0 %}" >Update</a>
+                                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                                </div>
+
+                            </th>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    
+            </table>
+        </div>
+    </div>
+{% endblock %}

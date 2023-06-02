@@ -1,0 +1,57 @@
+BEGIN;
+--
+-- Create model Course
+--
+CREATE TABLE "main_course" ("course_ID" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "course_name" varchar(200) NOT NULL, "course_description" text NOT NULL, "course_fee" decimal NOT NULL);
+--
+-- Create model Student
+--
+CREATE TABLE "main_student" ("std_ID" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "std_fname" varchar(30) NOT NULL, "std_lname" varchar(30) NOT NULL, "std_bod" date NOT NULL, "std_email" varchar(254) NOT NULL, "std_pnum" integer NOT NULL, "std_nic" varchar(12) NOT NULL);
+--
+-- Create model Teacher
+--
+CREATE TABLE "main_teacher" ("t_ID" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "t_fname" varchar(30) NOT NULL, "t_lname" varchar(30) NOT NULL, "t_bod" date NOT NULL, "t_email" varchar(254) NOT NULL, "t_pnum" integer NOT NULL, "t_nic" varchar(12) NOT NULL);
+--
+-- Create model TeacherEnroll
+--
+CREATE TABLE "main_teacherenroll" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "course_ID_id" bigint NOT NULL REFERENCES "main_course" ("course_ID") DEFERRABLE INITIALLY DEFERRED, "t_ID_id" bigint NOT NULL REFERENCES "main_teacher" ("t_ID") DEFERRABLE INITIALLY DEFERRED);
+--
+-- Create model StudentEnroll
+--
+CREATE TABLE "main_studentenroll" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "course_ID_id" bigint NOT NULL REFERENCES "main_course" ("course_ID") DEFERRABLE INITIALLY DEFERRED, "std_ID_id" bigint NOT NULL REFERENCES "main_student" ("std_ID") DEFERRABLE INITIALLY DEFERRED);
+--
+-- Create model Salary
+--
+CREATE TABLE "main_salary" ("salary_ID" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "salary_amount" decimal NOT NULL, "salary_date" date NOT NULL, "t_ID_id" bigint NOT NULL REFERENCES "main_teacher" ("t_ID") DEFERRABLE INITIALLY DEFERRED);
+--
+-- Create model Payment
+--
+CREATE TABLE "main_payment" ("payment_ID" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "payment_date" date NOT NULL, "payment_amount" decimal NOT NULL, "course_ID_id" bigint NOT NULL REFERENCES "main_course" ("course_ID") DEFERRABLE INITIALLY DEFERRED, "std_ID_id" bigint NOT NULL REFERENCES "main_student" ("std_ID") DEFERRABLE INITIALLY DEFERRED);
+--
+-- Add field student to course
+--
+CREATE TABLE "new__main_course" ("course_ID" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "course_name" varchar(200) NOT NULL, "course_description" text NOT NULL, "course_fee" decimal NOT NULL);
+INSERT INTO "new__main_course" ("course_ID", "course_name", "course_description", "course_fee") SELECT "course_ID", "course_name", "course_description", "course_fee" FROM "main_course";
+DROP TABLE "main_course";
+ALTER TABLE "new__main_course" RENAME TO "main_course";
+CREATE INDEX "main_teacherenroll_course_ID_id_045e9219" ON "main_teacherenroll" ("course_ID_id");
+CREATE INDEX "main_teacherenroll_t_ID_id_da0fbe50" ON "main_teacherenroll" ("t_ID_id");
+CREATE INDEX "main_studentenroll_course_ID_id_26f7736f" ON "main_studentenroll" ("course_ID_id");
+CREATE INDEX "main_studentenroll_std_ID_id_1f56492f" ON "main_studentenroll" ("std_ID_id");
+CREATE INDEX "main_salary_t_ID_id_9514992c" ON "main_salary" ("t_ID_id");
+CREATE INDEX "main_payment_course_ID_id_5ce9c088" ON "main_payment" ("course_ID_id");
+CREATE INDEX "main_payment_std_ID_id_95383a12" ON "main_payment" ("std_ID_id");
+--
+-- Add field teacher_ID to course
+--
+CREATE TABLE "new__main_course" ("course_ID" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "course_name" varchar(200) NOT NULL, "course_description" text NOT NULL, "course_fee" decimal NOT NULL);
+INSERT INTO "new__main_course" ("course_ID", "course_name", "course_description", "course_fee") SELECT "course_ID", "course_name", "course_description", "course_fee" FROM "main_course";
+DROP TABLE "main_course";
+ALTER TABLE "new__main_course" RENAME TO "main_course";
+--
+-- Create model Attendance
+--
+CREATE TABLE "main_attendance" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "att_date" datetime NOT NULL, "course_ID_id" bigint NOT NULL REFERENCES "main_course" ("course_ID") DEFERRABLE INITIALLY DEFERRED, "std_ID_id" bigint NOT NULL REFERENCES "main_student" ("std_ID") DEFERRABLE INITIALLY DEFERRED);
+CREATE INDEX "main_attendance_course_ID_id_6402c6fa" ON "main_attendance" ("course_ID_id");
+CREATE INDEX "main_attendance_std_ID_id_92d5ad9d" ON "main_attendance" ("std_ID_id");
+COMMIT;

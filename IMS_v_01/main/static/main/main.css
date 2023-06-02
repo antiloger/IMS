@@ -1,0 +1,61 @@
+
+/*----Dashboard----*/
+.d_top{
+    padding-top: 10px;
+}
+
+.d_ttab{
+    padding-top: 20px;
+
+}
+
+.d_card{
+    padding-top: 40px;
+}
+
+.d_cardn{
+    background-color: rgb(204, 248, 248);
+}
+
+.card:hover{
+        border-color: rgb(255, 202, 44);
+}
+
+/*----Table----*/
+
+.t_head{
+    padding-top: 50px;
+    
+}
+
+.t_top{
+    padding-top: 40px;
+    
+    
+}
+.t_tbtn{
+    padding-left: 20px;
+}
+.t_table{
+    padding-top: 50px;
+}
+
+/*------*/
+.dot{
+    height: 25px;
+    width: 25px;
+    border-radius: 50px;
+    display: inline-block;
+}
+.p_image{
+    height: 100%;
+    width: 100%;
+}
+.P_list{
+    padding-right: 40px;
+}
+
+.nav-item{
+    padding-left: 10px;
+    padding-right: 10px;
+}
