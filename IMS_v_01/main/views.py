@@ -46,4 +46,6 @@ def update(request, model_name, std_ID):
     print(up_obj)
     return render(request, 'main/update_form/std_update.html', {'up_obj': up_obj, 'model_o': model_o, 'enroll_det':en_det})
 
-#hello mf
+#hello mfe\
+def new():
+    pass
