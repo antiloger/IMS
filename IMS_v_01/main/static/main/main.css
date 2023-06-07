@@ -1,4 +1,6 @@
-
+html{
+    scroll-behavior: smooth;
+}
 /*----Dashboard----*/
 .d_top{
     padding-top: 10px;
@@ -59,3 +61,5 @@
     padding-left: 10px;
     padding-right: 10px;
 }
+
+/*---std_update---*/
