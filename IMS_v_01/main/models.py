@@ -57,6 +57,7 @@ class Payment(models.Model):
     payment_date = models.DateField()
     payment_amount = models.DecimalField(max_digits=10, decimal_places=2)
 
+
 class Salary(models.Model):
     t_ID = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     salary_ID = models.BigAutoField(primary_key=True)

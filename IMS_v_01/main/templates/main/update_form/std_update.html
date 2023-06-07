@@ -12,9 +12,9 @@
               <div class="row text-end">
 
                   <div class="col btn-group" role="group" aria-label="Basic outlined">
-                    <button type="submit" name="UpdateStd" class="btn btn-outline-primary"> Update </button>
-                    <button type="submit" name="EnrollStd" class="btn btn-outline-primary"> Enroll </button>
-                    <button type="submit" name="DeleteStd" class="btn btn-outline-primary"> Delete </button>
+                    <button type="submit" class="btn btn-outline-primary"> Update </button>
+                    <button type="submit" class="btn btn-outline-primary"> Enroll </button>
+                    <button type="submit" class="btn btn-outline-primary"> Delete </button>
 
                   </div>
 
@@ -23,49 +23,48 @@
             </div>
             <div class="col-12">
                 <label for="up_pic" class="form-lable">Profile Picture</label>
-                <input class="form-control shadow" type="file" id="up_pic" multiple>
+                <input class="form-control" type="file" id="up_pic" multiple>
             </div>
             <div class="col-12">
                 <label for="std_id" class="form-lable">Student_ID:</label>
-                <input type="text" class="form-control shadow" id="std_id" value="{{up_obj.std_ID}}" placeholder="00012025" name="std_ID">
+                <input type="text" class="form-control" id="std_id" value="{{up_obj.std_ID}}" placeholder="00012025" name="std_ID">
             </div>
             <div class="col">
                 <label for="f_name" class="form-lable">First Name:</label>
-                <input type="text" class="form-control shadow" id="f_name" aria-label="First Name" value="{{up_obj.std_fname}}"  name="std_fname">
+                <input type="text" class="form-control" id="f_name" aria-label="First Name" value="{{up_obj.std_fname}}"  name="std_fname">
             </div>
             <div class="col">
                 <label for="l_name" class="form-lable">Last Name:</label>
-                <input type="text" class="form-control shadow" id="l_name" aria-label="Last Name"value="{{up_obj.std_lname}}"  name="std_lname">
+                <input type="text" class="form-control" id="l_name" aria-label="Last Name"value="{{up_obj.std_lname}}"  name="std_lname">
             </div>
             <div class="col-12">
                 <label for="bod" class="form-lable">Birth of day:</label>
-                <input type="date" class="form-control shadow" id="bod" value="{{up_obj.std_bod|date:'Y-m-d'}}" name="std_bod">
+                <input type="date" class="form-control" id="bod" value="{{up_obj.std_bod|date:'Y-m-d'}}" name="std_bod">
             </div>
             <div class="col-12">
                 <label for="email_" class="form-lable">E-mail:</label>
-                <input type="email" class="form-control shadow" id="email_" aria-label="E-mail" value="{{up_obj.std_email}}" name="std_email">
+                <input type="email" class="form-control" id="email_" aria-label="E-mail" value="{{up_obj.std_email}}" name="std_email">
             </div>
             <div class="col-12">
                 <label for="p_num" class="form-lable">Phone Number:</label>
-                <input type="tel" class="form-control shadow" id="p_num" value="{{up_obj.std_pnum}}" name="std_pnum">
+                <input type="tel" class="form-control" id="p_num" value="{{up_obj.std_pnum}}" name="std_pnum">
             </div>
             <div class="col-12">
                 <label for="nic" class="form-lable">NIC:</label>
-                <input type="text" class="form-control shadow" id="nic" value="{{up_obj.std_nic}}" name="std_nic">
+                <input type="text" class="form-control" id="nic" value="{{up_obj.std_nic}}" name="std_nic">
             </div>
             <div class="col-12">
               <label for="Enroll" class="form-lable">Enroll:</label>
-              <ul class="list-group list-group-numbered shadow" id="Enroll">
+              <ul class="list-group list-group-numbered" id="Enroll">
                 {% for item in enroll_det %}
-                  <li class="list-group-item ">{{ item.course_name }}</li>
+                  <li class="list-group-item ">{{ item.course_ID_id }}</li>
                 {% endfor %}
-                  <li class="list-group-item">#</li>
               </ul>
             </div>
             <div class="col-12">
-              <hr class="hr container"/>
-              <label class="form-lable">Payment:</label>
-              <table class="table table-dark" >
+              <label for="pay" class="form-lable">Payment:</label>
+              <table class="table" id="pay">
+                <thead>
                   <tr>
                     <th scope="col">Course</th>
                     <th scope="col">Pay Date</th>
@@ -73,13 +72,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                {% for item in pay_det %}
                   <tr>
-                        <th>{{ item.course_ID.course_name }}</th>
-                        <th>{{ item.payment_date }}</th>
-                        <th>{{ item.payment_amount }}</th>
+
+                    <th></th>
+
                   </tr>
-                {% endfor %}
                 </tbody>
               </table>
             </div>
