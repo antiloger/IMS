@@ -3,8 +3,12 @@
 {% block content %}
     <div class="container" style="padding-top:40px; width: 70vw;">
         <h1>Add Student</h1>
+
+
+
         <form class="row g-3" method=POST action="">
             {% csrf_token %}
+
             <div class="col">
                 <img class="rounded-circle" width="128" height="128" src="https://img.icons8.com/cotton/512/000000/gender-neutral-user--v2.png" alt="gender-neutral-user--v2"/>
             </div>
@@ -14,13 +18,30 @@
                   <div class="col btn-group" role="group" aria-label="Basic outlined">
                     <button type="submit" name="UpdateStd" class="btn btn-outline-primary"> Update </button>
                     <button type="submit" name="EnrollStd" class="btn btn-outline-primary"> Enroll </button>
-                    <button type="submit" name="DeleteStd" class="btn btn-outline-primary"> Delete </button>
-
+                    <button type="button" name="DeleteStd" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#delestdmodel"> Delete </button>
                   </div>
-
 
               </div>
             </div>
+
+            <div id="delestdmodel" class="modal fade text-dark " tabindex="-1" role="dialog" >
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Warning!</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do you Want to delete?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <a type="button" class="btn btn-danger" href="{% url 'delete' 'Student' model_ID %}" >Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-12">
                 <label for="up_pic" class="form-lable">Profile Picture</label>
                 <input class="form-control shadow" type="file" id="up_pic" multiple>
@@ -84,5 +105,6 @@
               </table>
             </div>
         </form>
+
     </div>
 {% endblock %}

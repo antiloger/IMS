@@ -1,0 +1,80 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <div class="container" style="padding-top:40px; width: 70vw;">
+        <h1>Teacher</h1>
+        <form class="row g-3" method=POST action="">
+            {% csrf_token %}
+            <div class="col">
+                <img class="rounded-circle" width="128" height="128" src="https://img.icons8.com/cotton/512/000000/gender-neutral-user--v2.png" alt="gender-neutral-user--v2"/>
+            </div>
+            <div class="col-6 text-end align-self-end">
+              <div class="row text-end">
+
+                  <div class="col btn-group" role="group" aria-label="Basic outlined">
+                    <button type="submit" name="UpdateTeach" class="btn btn-outline-primary"> Update </button>
+                    <button type="submit" name="EnrollTeach" class="btn btn-outline-primary"> Enroll </button>
+                    <button type="button" name="DeleteTeach" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#deleteachmodel"> Delete </button>
+
+                  </div>
+
+
+              </div>
+            </div>
+
+            <div id="deleteachmodel" class="modal fade text-dark " tabindex="-1" role="dialog" >
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Warning!</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do you Want to delete?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <a type="button" class="btn btn-danger" href="{% url 'delete' 'Teacher' model_ID %}" >Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label for="up_pic" class="form-lable">Profile Picture</label>
+                <input class="form-control shadow" type="file" id="up_pic" multiple>
+            </div>
+            <div class="col-12">
+                <label for="std_id" class="form-lable">Student_ID:</label>
+                <input type="text" class="form-control shadow" id="std_id" value="{{up_obj.t_ID}}" placeholder="00012025" name="t_ID">
+            </div>
+            <div class="col">
+                <label for="f_name" class="form-lable">First Name:</label>
+                <input type="text" class="form-control shadow" id="f_name" aria-label="First Name" value="{{up_obj.t_fname}}"  name="t_fname">
+            </div>
+            <div class="col">
+                <label for="l_name" class="form-lable">Last Name:</label>
+                <input type="text" class="form-control shadow" id="l_name" aria-label="Last Name" value="{{up_obj.t_lname}}"  name="t_lname">
+            </div>
+            <div class="col-12">
+                <label for="bod" class="form-lable">Birth of day:</label>
+                <input type="date" class="form-control shadow" id="bod" value="{{up_obj.t_bod|date:'Y-m-d'}}" name="t_bod">
+            </div>
+            <div class="col-12">
+                <label for="email_" class="form-lable">E-mail:</label>
+                <input type="email" class="form-control shadow" id="email_" aria-label="E-mail" value="{{up_obj.t_email}}" name="t_email">
+            </div>
+            <div class="col-12">
+                <label for="p_num" class="form-lable">Phone Number:</label>
+                <input type="tel" class="form-control shadow" id="p_num" value="{{up_obj.t_pnum}}" name="t_pnum">
+            </div>
+            <div class="col-12">
+                <label for="nic" class="form-lable">NIC:</label>
+                <input type="text" class="form-control shadow" id="nic" value="{{up_obj.t_nic}}" name="t_nic">
+            </div>
+
+        </form>
+    </div>
+
+{% endblock %}
